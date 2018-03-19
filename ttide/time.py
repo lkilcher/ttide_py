@@ -33,6 +33,8 @@ def date2num(dt):
             out[idx] = date2num(val)
         out.shape = dt.shape
         return out
+    if isinstance(dt, np.datetime64):
+        dt = dt.astype('O')
     return (dt.toordinal() +
             (((dt.microsecond / 1e6 +
                dt.second) / 60 +
